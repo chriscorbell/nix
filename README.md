@@ -105,3 +105,51 @@ sudo nixos-rebuild switch --flake ~/.config/nix#docker
 ```
 
 If the hardware layout matches the tracked file already in the repo, the regeneration step can be skipped.
+
+## Reinstalling `mbp`
+
+If the MacBook Pro is wiped and reinstalled, use this workflow:
+
+1. Install Xcode Command Line Tools:
+
+```sh
+xcode-select --install
+```
+
+2. Install Nix using the current official installer:
+
+```sh
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+```
+
+3. Open a new terminal session after the Nix installer completes.
+
+4. Clone the repo:
+
+```sh
+mkdir -p ~/.config
+git clone https://github.com/chriscorbell/nix.git ~/.config/nix
+cd ~/.config/nix
+```
+
+5. Bootstrap `nix-darwin` and apply the `mbp` configuration:
+
+```sh
+sudo nix --extra-experimental-features 'nix-command flakes' \
+  run nix-darwin/master#darwin-rebuild -- \
+  switch --flake ~/.config/nix#mbp
+```
+
+6. Open a new terminal session after the switch completes.
+
+7. Future rebuilds can use:
+
+```sh
+sudo darwin-rebuild switch --flake ~/.config/nix#mbp
+```
+
+Notes:
+
+- This assumes the macOS username is `chris`.
+- This assumes the Darwin host target remains `mbp`.
+- If either of those changes, update `hosts/mbp/default.nix` before the first switch.
