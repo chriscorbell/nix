@@ -16,6 +16,7 @@ let
     gs = "git status";
     ga = "git add .";
     gc = "git commit -m";
+    gf = "git fetch";
     gp = "git pull";
     cn = "nano ~/.config/nix/flake.nix";
     ld = "lazydocker";
