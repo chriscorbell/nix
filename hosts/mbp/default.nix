@@ -187,7 +187,7 @@ in
     font-family = "JetBrainsMono Nerd Font Mono"
     font-size = 16
     theme = Poimandres
-    shell-integration-features = ssh-terminfo,ssh-env
+    shell-integration-features = ssh-terminfo,ssh-env,sudo
     window-padding-x = 16
     EOF
     chown ${username}:staff ${homeDir}/.config/ghostty/config

@@ -1,7 +1,8 @@
 # Unified Nix Config
 
-This repository consolidates three machines into one flake:
+This repository consolidates four machines into one flake:
 
+- `devbox`
 - `docker`
 - `oracle-vps`
 - `mbp`
@@ -12,6 +13,7 @@ This repository consolidates three machines into one flake:
 .
 ├── flake.nix
 ├── hosts/
+│   ├── devbox/
 │   ├── docker/
 │   ├── mbp/
 │   └── oracle-vps/
@@ -30,6 +32,7 @@ Clone the repo onto the target machine at `~/.config/nix`.
 NixOS:
 
 ```sh
+sudo nixos-rebuild switch --flake ~/.config/nix#devbox
 sudo nixos-rebuild switch --flake ~/.config/nix#docker
 sudo nixos-rebuild switch --flake ~/.config/nix#oracle-vps
 ```
@@ -44,6 +47,7 @@ Or use the helper:
 
 ```sh
 ~/.config/nix/scripts/apply
+~/.config/nix/scripts/apply devbox
 ~/.config/nix/scripts/apply docker
 ~/.config/nix/scripts/apply oracle-vps
 ~/.config/nix/scripts/apply mbp
@@ -51,10 +55,17 @@ Or use the helper:
 
 ## Hardware Configuration
 
-The two NixOS hosts import repo-local hardware files:
+The NixOS hosts import repo-local hardware files:
 
+- `hosts/devbox/hardware-configuration.nix`
 - `hosts/docker/hardware-configuration.nix`
 - `hosts/oracle-vps/hardware-configuration.nix`
+
+For `devbox`, the tracked file is currently a placeholder. Replace it with a generated hardware file before rebuilding that host:
+
+```sh
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/devbox/hardware-configuration.nix
+```
 
 For `docker`, the real generated file is already tracked in the repo.
 
@@ -70,7 +81,7 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-v
 2. Choose a minimal install with no DE/WM.
 3. Set:
    - username: `chris`
-   - hostname: `docker` / `oracle-vps`
+   - hostname: `devbox` / `docker` / `oracle-vps`
 4. Reboot and log in.
 5. Install `git` if needed.
 6. Clone the repo:
@@ -82,6 +93,12 @@ cd ~/.config/nix
 ```
 
 7. If the new install generated different disk, EFI, or swap UUIDs, regenerate the hardware file before rebuilding:
+
+`devbox`:
+
+```sh
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/devbox/hardware-configuration.nix
+```
 
 `docker`:
 
@@ -96,6 +113,12 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-v
 ```
 
 8. Apply the system configuration:
+
+`devbox`:
+
+```sh
+sudo nixos-rebuild switch --flake ~/.config/nix#devbox
+```
 
 `docker`:
 

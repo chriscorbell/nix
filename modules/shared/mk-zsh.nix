@@ -14,6 +14,7 @@ in
     {
       enable = true;
       enableCompletion = true;
+      promptInit = "";
       interactiveShellInit = ''
         export EDITOR=nano
         export VISUAL=${visual}
