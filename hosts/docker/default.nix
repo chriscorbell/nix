@@ -24,6 +24,7 @@
     cifs-utils
     clinfo
     git-credential-manager
+    ghostty.terminfo
     intel-compute-runtime
     intel-gpu-tools
     intel-media-driver

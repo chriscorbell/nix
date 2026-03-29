@@ -16,6 +16,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    ghostty.terminfo
     gh
     nodejs
     tree

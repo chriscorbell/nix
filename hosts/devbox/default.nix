@@ -30,6 +30,7 @@
     fd
     fzf
     gh
+    ghostty.terminfo
     hugo
     iperf3
     iproute2
@@ -52,6 +53,7 @@
     shellcheck
     shfmt
     socat
+    sqlite
     strace
     tmux
     unzip
@@ -60,7 +62,7 @@
     zip
   ];
 
-  users.users.chris.extraGroups = lib.mkAfter [ "networkmanager" ];
+  users.users.chris.extraGroups = lib.mkAfter [ "docker" "networkmanager" ];
   security.sudo.wheelNeedsPassword = false;
 
   services.openssh = {
