@@ -130,6 +130,19 @@ in
 
   homebrew = {
     enable = true;
+    enableZshIntegration = true;
+    vscode = [
+      "bbenoist.nix"
+      "catppuccin.catppuccin-vsc-icons"
+      "codexbuild.codex-build"
+      "ms-azuretools.vscode-containers"
+      "ms-vscode-remote.remote-ssh"
+      "ms-vscode-remote.remote-ssh-edit"
+      "ms-vscode.remote-explorer"
+      "openai.chatgpt"
+      "pmndrs.pmndrs"
+      "tamasfe.even-better-toml"
+    ];
     casks = [
       "adobe-creative-cloud"
       "affinity"
@@ -339,7 +352,9 @@ in
     {
       "workbench.sideBar.location": "right",
       "workbench.activityBar.location": "top",
+      "window.autoDetectColorScheme": true,
       "workbench.colorTheme": "poimandres",
+      "workbench.preferredDarkColorTheme": "poimandres",
       "editor.minimap.enabled": false,
       "workbench.startupEditor": "none",
       "editor.fontFamily": "'JetBrainsMono Nerd Font'",
