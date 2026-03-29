@@ -18,6 +18,8 @@ let
     gc = "git commit -m";
     gp = "git pull";
     cn = "nano ~/.config/nix/flake.nix";
+    ld = "lazydocker";
+    lg = "lazygit";
     rs = rs;
     rsu = rsu;
     cat = "bat --theme ansi -pp";
