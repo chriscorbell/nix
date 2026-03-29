@@ -161,6 +161,8 @@ in
     ${username} ALL = (ALL) NOPASSWD: ALL
   '';
 
+  services.openssh.enable = true;
+
   launchd.daemons.nfs-mount-triggers = {
     serviceConfig = {
       Label = "org.nix-darwin.nfs-mount-triggers";
