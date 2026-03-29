@@ -40,14 +40,24 @@ in
 
         eval "$(${pkgs.atuin}/bin/atuin init zsh)"
         eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
-        eval "$(${pkgs.starship}/bin/starship init zsh)"
-      '';
+      ''
+      + (
+        if useDarwinOptions then
+          ""
+        else
+          ''
+            eval "$(${pkgs.starship}/bin/starship init zsh)"
+          ''
+      );
     }
     // (
       if useDarwinOptions then
         {
           enableAutosuggestions = true;
           enableSyntaxHighlighting = true;
+          promptInit = ''
+            eval "$(${pkgs.starship}/bin/starship init zsh)"
+          '';
         }
       else
         {
