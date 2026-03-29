@@ -72,3 +72,36 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-v
 - The canonical checkout path is `~/.config/nix` on all three hosts.
 - `docker` includes its generated hardware file in the repo.
 - `oracle-vps` keeps a tracked placeholder hardware file until that VM is recreated.
+
+## Reinstalling `docker`
+
+If the `docker` host is wiped and reinstalled, use this workflow:
+
+1. Install NixOS with the graphical installer.
+2. Choose a minimal install with no DE/WM.
+3. Set:
+   - username: `chris`
+   - hostname: `docker`
+4. Reboot and log in.
+5. Install `git` if needed.
+6. Clone the repo:
+
+```sh
+mkdir -p ~/.config
+git clone https://github.com/chriscorbell/nix.git ~/.config/nix
+cd ~/.config/nix
+```
+
+7. If the new install generated different disk, EFI, or swap UUIDs, regenerate the tracked Docker hardware file before rebuilding:
+
+```sh
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/docker/hardware-configuration.nix
+```
+
+8. Apply the system configuration:
+
+```sh
+sudo nixos-rebuild switch --flake ~/.config/nix#docker
+```
+
+If the hardware layout matches the tracked file already in the repo, the regeneration step can be skipped.
