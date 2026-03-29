@@ -140,7 +140,6 @@ in
       "ms-vscode-remote.remote-ssh-edit"
       "ms-vscode.remote-explorer"
       "openai.chatgpt"
-      "pmndrs.pmndrs"
       "tamasfe.even-better-toml"
     ];
     casks = [
@@ -225,7 +224,7 @@ in
     cat > ${homeDir}/.config/ghostty/config <<'EOF'
     font-family = "JetBrainsMono Nerd Font Mono"
     font-size = 16
-    theme = Poimandres
+    theme = Aizen Dark
     shell-integration-features = ssh-terminfo,ssh-env,sudo
     window-padding-x = 16
     EOF
@@ -353,8 +352,6 @@ in
       "workbench.sideBar.location": "right",
       "workbench.activityBar.location": "top",
       "window.autoDetectColorScheme": true,
-      "workbench.colorTheme": "poimandres",
-      "workbench.preferredDarkColorTheme": "poimandres",
       "editor.minimap.enabled": false,
       "workbench.startupEditor": "none",
       "editor.fontFamily": "'JetBrainsMono Nerd Font'",
