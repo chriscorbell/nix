@@ -6,8 +6,23 @@
   ];
 
   networking.hostName = "devbox";
+  networking.useDHCP = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.interfaces.ens18.ipv4.addresses = [
+    {
+      address = "10.0.0.24";
+      prefixLength = 24;
+    }
+  ];
+  networking.defaultGateway = {
+    address = "10.0.0.1";
+    interface = "ens18";
+  };
   networking.firewall.enable = false;
+
+  # Let Tailscale program DNS via MagicDNS instead of pinning nameservers here.
+  services.resolved.enable = true;
 
   environment.systemPackages = with pkgs; [
     bun
@@ -20,6 +35,8 @@
     iproute2
     jq
     just
+    lazydocker
+    lazygit
     lsof
     mtr
     nil
