@@ -2,9 +2,9 @@
 
 This repository consolidates three machines into one flake:
 
-- `docker`: the NixOS host that runs Docker at home
-- `oracle-vps`: the NixOS VPS in the cloud
-- `mbp`: the MacBook Pro managed by `nix-darwin`
+- `docker`
+- `oracle-vps`
+- `mbp`
 
 ## Layout
 
@@ -21,13 +21,13 @@ This repository consolidates three machines into one flake:
 └── scripts/apply
 ```
 
-Shared Linux concerns live in `modules/nixos/common`, host-specific concerns live under `hosts/<name>`, and the shared Starship prompt lives in `modules/shared/starship.nix`.
+Shared NixOS concerns live in `modules/nixos/common`, host-specific concerns live under `hosts/<name>`, and the shared Starship prompt lives in `modules/shared/starship.nix`.
 
 ## Applying a Host
 
 Clone the repo onto the target machine at `~/.config/nix`.
 
-Linux:
+NixOS:
 
 ```sh
 sudo nixos-rebuild switch --flake ~/.config/nix#docker
@@ -64,49 +64,54 @@ For `oracle-vps`, the tracked file is currently a placeholder. Replace it with a
 sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-vps/hardware-configuration.nix
 ```
 
-## Migration Notes
-
-- The old repos were left untouched in `/Users/chris/git`.
-- The MacBook Pro config was migrated into `hosts/mbp/default.nix`.
-- Shared Linux package, shell, user, and base system settings were deduplicated into reusable modules.
-- The canonical checkout path is `~/.config/nix` on all three hosts.
-- `docker` includes its generated hardware file in the repo.
-- `oracle-vps` keeps a tracked placeholder hardware file until that VM is recreated.
-
-## Reinstalling `docker`
-
-If the `docker` host is wiped and reinstalled, use this workflow:
+## Reinstalling/rebuilding NixOS hosts
 
 1. Install NixOS with the graphical installer.
 2. Choose a minimal install with no DE/WM.
 3. Set:
    - username: `chris`
-   - hostname: `docker`
+   - hostname: `docker` / `oracle-vps`
 4. Reboot and log in.
 5. Install `git` if needed.
 6. Clone the repo:
 
 ```sh
 mkdir -p ~/.config
-git clone https://github.com/chriscorbell/nix.git ~/.config/nix
+git clone https://github.com/chriscorbell/nix ~/.config/nix
 cd ~/.config/nix
 ```
 
-7. If the new install generated different disk, EFI, or swap UUIDs, regenerate the tracked Docker hardware file before rebuilding:
+7. If the new install generated different disk, EFI, or swap UUIDs, regenerate the hardware file before rebuilding:
+
+`docker`:
 
 ```sh
 sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/docker/hardware-configuration.nix
 ```
 
+`oracle-vps`:
+
+```sh
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-vps/hardware-configuration.nix
+```
+
 8. Apply the system configuration:
+
+`docker`:
 
 ```sh
 sudo nixos-rebuild switch --flake ~/.config/nix#docker
 ```
 
+`oracle-vps`:
+
+```sh
+sudo nixos-rebuild switch --flake ~/.config/nix#oracle-vps
+```
+
 If the hardware layout matches the tracked file already in the repo, the regeneration step can be skipped.
 
-## Reinstalling `mbp`
+## Reinstalling/rebuilding for MacOS
 
 If the MacBook Pro is wiped and reinstalled, use this workflow:
 
