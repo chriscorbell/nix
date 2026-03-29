@@ -110,6 +110,24 @@ in
     /Volumes/data-tailscale -fstype=nfs,resvport,tcp 100.64.45.93:/tank/data
   '';
 
+  environment.etc."pf.conf".text = ''
+    scrub-anchor "com.apple/*"
+    nat-anchor "com.apple/*"
+    rdr-anchor "com.apple/*"
+    dummynet-anchor "com.apple/*"
+    anchor "com.apple/*"
+    anchor "nix-ssh"
+    load anchor "com.apple" from "/etc/pf.anchors/com.apple"
+    load anchor "nix-ssh" from "/etc/pf.anchors/nix-ssh"
+  '';
+
+  environment.etc."pf.anchors/nix-ssh".text = ''
+    pass in quick on lo0 proto tcp from any to any port 22
+    pass in quick inet proto tcp from 100.64.0.0/10 to any port 22 keep state
+    pass in quick inet6 proto tcp from fd7a:115c:a1e0::/48 to any port 22 keep state
+    block in quick proto tcp from any to any port 22
+  '';
+
   homebrew = {
     enable = true;
     casks = [
@@ -180,6 +198,11 @@ in
     ln -sf /etc/static/zprofile /etc/zprofile
 
     sudo --user=${username} touch ${homeDir}/.hushlogin
+
+    /sbin/pfctl -f /etc/pf.conf
+    if ! /sbin/pfctl -s info | grep -q "Status: Enabled"; then
+      /sbin/pfctl -E
+    fi
 
     mkdir -p /Volumes/data-lan
     mkdir -p /Volumes/data-tailscale
