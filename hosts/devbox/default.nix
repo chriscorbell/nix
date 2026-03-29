@@ -27,19 +27,10 @@
   environment.systemPackages = with pkgs; [
     bun
     dig
-    fd
-    fzf
-    gh
     ghostty.terminfo
     hugo
     iperf3
     iproute2
-    jq
-    just
-    lazydocker
-    lazygit
-    lsof
-    mtr
     nil
     nix-output-monitor
     nix-tree
@@ -48,17 +39,9 @@
     python3
     python3Packages.pip
     python3Packages.virtualenv
-    ripgrep
-    rsync
-    shellcheck
-    shfmt
     socat
-    sqlite
     strace
-    tmux
     unzip
-    uv
-    yq-go
     zip
   ];
 

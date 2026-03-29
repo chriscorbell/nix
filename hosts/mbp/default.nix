@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ../../modules/shared/terminal-packages.nix
     ../../modules/shared/starship.nix
     (import ../../modules/shared/mk-zsh.nix {
       visual = "code";
@@ -23,56 +24,27 @@ in
 
   environment.systemPackages = with pkgs; [
     age
-    atuin
-    bat
-    btop
-    curl
     delta
     direnvFixed
     doggo
     dua
     dust
-    eza
     entr
     fastfetch
-    fd
     fortune
-    fzf
-    gh
-    git
     gnugrep
     gnupg
     htop
     hyperfine
     iperf3
     iproute2mac
-    jq
-    just
-    lazydocker
-    lazygit
-    less
-    lsof
-    mtr
     nano
     ncdu
     rclone
-    ripgrep
-    rsync
-    shellcheck
-    shfmt
     sops
-    sqlite
-    starship
-    tree
-    tmux
-    uv
     vim
     watchexec
-    wget
-    yq-go
     zellij
-    zoxide
-    zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
   ];

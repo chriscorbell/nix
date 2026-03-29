@@ -6,11 +6,29 @@
     btop
     curl
     eza
+    fd
     file
+    fzf
+    gh
     git
+    jq
+    just
+    lazydocker
+    lazygit
     less
+    lsof
+    mtr
+    ripgrep
+    rsync
+    shellcheck
+    shfmt
+    sqlite
     starship
+    tmux
+    tree
+    uv
     wget
+    yq-go
     zoxide
     zsh
   ];

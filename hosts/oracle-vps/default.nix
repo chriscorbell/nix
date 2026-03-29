@@ -17,9 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     ghostty.terminfo
-    gh
     nodejs
-    tree
   ];
 
   users.users.chris.extraGroups = lib.mkAfter [ "networkmanager" ];
