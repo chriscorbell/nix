@@ -145,6 +145,7 @@ in
       "steam"
       "stremio"
       "tailscale-app"
+      "telegram-desktop"
       "visual-studio-code"
       "windows-app"
       "wispr-flow"
