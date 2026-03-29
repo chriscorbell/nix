@@ -15,20 +15,24 @@ in
       enable = true;
       enableCompletion = true;
       promptInit = "";
+      shellAliases = {
+        l = null;
+        ll = null;
+        ls = "eza -al --icons=always";
+        grep = "grep --color=auto";
+        gs = "git status";
+        ga = "git add .";
+        gc = "git commit -m";
+        gp = "git pull";
+        cn = "nano ~/.config/nix/flake.nix";
+        rs = rs;
+        rsu = rsu;
+        cat = "bat --theme ansi -pp";
+      };
       interactiveShellInit = ''
         export EDITOR=nano
         export VISUAL=${visual}
         export PAGER=less
-
-        alias ls='eza -al --icons=always'
-        alias grep='grep --color=auto'
-        alias gs='git status'
-        alias ga='git add .'
-        alias gc='git commit -m'
-        alias gp='git pull'
-        alias cn='nano ~/.config/nix/flake.nix'
-        alias rs='${rs}'
-        alias cat='bat --theme ansi -pp'
 
         gacp() {
           git add .
@@ -36,8 +40,6 @@ in
           branch=$(git rev-parse --abbrev-ref HEAD) || return 1
           git push origin "$branch"
         }
-
-        alias rsu='${rsu}'
 
         eval "$(${pkgs.atuin}/bin/atuin init zsh)"
         eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
