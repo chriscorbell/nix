@@ -51,12 +51,17 @@ Or use the helper:
 
 ## Hardware Configuration
 
-The two NixOS hosts import the machine-generated hardware file from `/etc/nixos/hardware-configuration.nix`.
+The two NixOS hosts import repo-local hardware files:
 
-On each Linux host, ensure that file exists before rebuilding:
+- `hosts/docker/hardware-configuration.nix`
+- `hosts/oracle-vps/hardware-configuration.nix`
+
+For `docker`, the real generated file is already tracked in the repo.
+
+For `oracle-vps`, the tracked file is currently a placeholder. Replace it with a generated hardware file before rebuilding that host:
 
 ```sh
-sudo nixos-generate-config --show-hardware-config > /etc/nixos/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-vps/hardware-configuration.nix
 ```
 
 ## Migration Notes
@@ -65,4 +70,5 @@ sudo nixos-generate-config --show-hardware-config > /etc/nixos/hardware-configur
 - The MacBook Pro config was migrated into `hosts/mbp/default.nix`.
 - Shared Linux package, shell, user, and base system settings were deduplicated into reusable modules.
 - The canonical checkout path is `~/.config/nix` on all three hosts.
-- The two NixOS hosts depend on their local `/etc/nixos/hardware-configuration.nix` files by design.
+- `docker` includes its generated hardware file in the repo.
+- `oracle-vps` keeps a tracked placeholder hardware file until that VM is recreated.
