@@ -40,6 +40,7 @@ in
     iproute2mac
     nano
     ncdu
+    nodejs_24
     rclone
     sops
     vim
@@ -119,6 +120,9 @@ in
       "affinity"
       "bambu-studio"
       "betterdisplay"
+      "caffeine"
+      "claude"
+      "claude-code"
       "codex"
       "codex-app"
       "discord"
@@ -127,6 +131,7 @@ in
       "font-inter"
       "font-jetbrains-mono-nerd-font"
       "ghostty"
+      "google-chrome"
       "helium-browser"
       "iina"
       "karabiner-elements"

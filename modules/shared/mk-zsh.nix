@@ -39,6 +39,17 @@ in
         export EDITOR=nano
         export VISUAL=${visual}
         export PAGER=less
+      ''
+      + (
+        if useDarwinOptions then
+          ''
+            export BUN_INSTALL="$HOME/.bun"
+            export PATH="$BUN_INSTALL/bin:$PATH"
+          ''
+        else
+          ""
+      )
+      + ''
 
         gacp() {
           git add .
