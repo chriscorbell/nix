@@ -30,6 +30,7 @@
     intel-media-driver
     libva-utils
     nfs-utils
+    nodejs
     level-zero
     vpl-gpu-rt
   ];
