@@ -13,5 +13,19 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/" =
+    {
+      device = "/dev/disk/by-uuid/d481fb24-8fd0-4ab8-9266-0ca33583fc88";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-uuid/E735-2D45";
+      fsType = "vfat";
+    };
+
+  swapDevices = [ ];
+
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
