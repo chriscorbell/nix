@@ -51,8 +51,8 @@
           ./hosts/docker
         ];
 
-        oracle-vps = mkNixos "x86_64-linux" [
-          ./hosts/oracle-vps
+        cloud = mkNixos "x86_64-linux" [
+          ./hosts/cloud
         ];
       };
 

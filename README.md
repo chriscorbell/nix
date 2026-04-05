@@ -4,7 +4,7 @@ This repository consolidates four machines into one flake:
 
 - `devbox`
 - `docker`
-- `oracle-vps`
+- `cloud`
 - `mbp`
 
 ## Layout
@@ -16,7 +16,7 @@ This repository consolidates four machines into one flake:
 │   ├── devbox/
 │   ├── docker/
 │   ├── mbp/
-│   └── oracle-vps/
+│   └── cloud/
 ├── modules/
 │   ├── nixos/common/
 │   └── shared/
@@ -34,7 +34,7 @@ NixOS:
 ```sh
 sudo nixos-rebuild switch --flake ~/.config/nix#devbox
 sudo nixos-rebuild switch --flake ~/.config/nix#docker
-sudo nixos-rebuild switch --flake ~/.config/nix#oracle-vps
+sudo nixos-rebuild switch --flake ~/.config/nix#cloud
 ```
 
 macOS:
@@ -49,7 +49,7 @@ Or use the helper:
 ~/.config/nix/scripts/apply
 ~/.config/nix/scripts/apply devbox
 ~/.config/nix/scripts/apply docker
-~/.config/nix/scripts/apply oracle-vps
+~/.config/nix/scripts/apply cloud
 ~/.config/nix/scripts/apply mbp
 ```
 
@@ -59,7 +59,7 @@ The NixOS hosts import repo-local hardware files:
 
 - `hosts/devbox/hardware-configuration.nix`
 - `hosts/docker/hardware-configuration.nix`
-- `hosts/oracle-vps/hardware-configuration.nix`
+- `hosts/cloud/hardware-configuration.nix`
 
 For `devbox`, the tracked file is currently a placeholder. Replace it with a generated hardware file before rebuilding that host:
 
@@ -69,10 +69,10 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/devbox/h
 
 For `docker`, the real generated file is already tracked in the repo.
 
-For `oracle-vps`, the tracked file is currently a placeholder. Replace it with a generated hardware file before rebuilding that host:
+For `cloud`, the tracked file is currently a placeholder. Replace it with a generated hardware file before rebuilding that host:
 
 ```sh
-sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-vps/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/cloud/hardware-configuration.nix
 ```
 
 ## Reinstalling/rebuilding NixOS hosts
@@ -81,7 +81,7 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-v
 2. Choose a minimal install with no DE/WM.
 3. Set:
    - username: `chris`
-   - hostname: `devbox` / `docker` / `oracle-vps`
+   - hostname: `devbox` / `docker` / `cloud`
 4. Reboot and log in.
 5. Install `git` if needed.
 6. Clone the repo:
@@ -106,10 +106,10 @@ sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/devbox/h
 sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/docker/hardware-configuration.nix
 ```
 
-`oracle-vps`:
+`cloud`:
 
 ```sh
-sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/oracle-vps/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > ~/.config/nix/hosts/cloud/hardware-configuration.nix
 ```
 
 8. Apply the system configuration:
@@ -126,10 +126,10 @@ sudo nixos-rebuild switch --flake ~/.config/nix#devbox
 sudo nixos-rebuild switch --flake ~/.config/nix#docker
 ```
 
-`oracle-vps`:
+`cloud`:
 
 ```sh
-sudo nixos-rebuild switch --flake ~/.config/nix#oracle-vps
+sudo nixos-rebuild switch --flake ~/.config/nix#cloud
 ```
 
 If the hardware layout matches the tracked file already in the repo, the regeneration step can be skipped.

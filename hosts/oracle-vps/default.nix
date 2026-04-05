@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "oracle-vps";
+  networking.hostName = "cloud";
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
