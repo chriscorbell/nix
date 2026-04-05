@@ -51,7 +51,7 @@
           ./hosts/docker
         ];
 
-        cloud = mkNixos "x86_64-linux" [
+        cloud = mkNixos "aarch64-linux" [
           ./hosts/cloud
         ];
       };
