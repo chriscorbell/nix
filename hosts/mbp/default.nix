@@ -38,6 +38,7 @@ in
     hyperfine
     iperf3
     iproute2mac
+    llmfit
     nano
     ncdu
     nodejs_24
@@ -130,6 +131,7 @@ in
       "ente-auth"
       "font-inter"
       "font-jetbrains-mono-nerd-font"
+      "font-sf-mono-nerd-font-ligaturized"
       "ghostty"
       "google-chrome"
       "helium-browser"
