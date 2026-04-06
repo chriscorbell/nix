@@ -201,9 +201,9 @@ in
 
     sudo --user=${username} mkdir -p ${homeDir}/.config/ghostty
     cat > ${homeDir}/.config/ghostty/config <<'EOF'
-    font-family = "JetBrainsMono Nerd Font Mono"
-    font-size = 16
-    theme = Aizen Dark
+    font-family = "JetBrains Mono Nerd Font"
+    font-size = 15
+    theme = Moonfly
     shell-integration-features = ssh-terminfo,ssh-env,sudo
     window-padding-x = 16
     EOF
