@@ -6,6 +6,9 @@
   ];
 
   networking.hostName = "cloud";
+  my.remoteDocker = {
+    enable = true;
+  };
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;

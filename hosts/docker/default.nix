@@ -6,6 +6,9 @@
   ];
 
   networking.hostName = "docker";
+  my.remoteDocker = {
+    enable = true;
+  };
   networking.useDHCP = false;
   networking.interfaces.ens18.ipv4.addresses = [
     {

@@ -6,6 +6,9 @@
   ];
 
   networking.hostName = "devbox";
+  my.remoteDocker = {
+    enable = true;
+  };
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";

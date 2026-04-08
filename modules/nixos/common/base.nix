@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,6 +25,10 @@
   services.openssh.enable = true;
   services.tailscale.enable = true;
   virtualisation.docker.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    prometheus-node-exporter
+  ];
 
   system.stateVersion = "25.11";
 }
