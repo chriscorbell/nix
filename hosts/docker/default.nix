@@ -6,6 +6,7 @@
   ];
 
   networking.hostName = "docker";
+  services.tailscale.extraSetFlags = [ "--ssh" ];
   my.remoteDocker = {
     enable = true;
   };
