@@ -6,7 +6,6 @@
   ];
 
   networking.hostName = "cloud";
-  services.tailscale.extraSetFlags = [ "--ssh" ];
   my.remoteDocker = {
     enable = true;
   };
